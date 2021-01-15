@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Caitlyn Jameson, Yuxing Deng">
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        footer {
+            color: white;
+            background-color: slategray;
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Superhero School</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/employees">Employees</a>
+            <a class="nav-link" href="/students">Students</a>
+            <a class="nav-link" href="/superpowers">Superpowers</a>
+            <a class="nav-link" href="/missions">Missions</a>
+            <a class="nav-link" href="/teams">Teams</a>
+          </div>
+        </div>
+    </nav>
+    <!-- List of pages -->
+    <div class="container my-5 pt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <!-- Student list page -->
+                <h4 class="display-5"><a href="/students">Student list</a></h4>
+                <ul>
+                    <li>SELECT to list students</li>
+                    <li>DELETE each student</li>
+                    <li>INSERT a new student</li>
+                </ul>
+                <!-- Student personal info page -->
+                <h4 class="display-5">Student personal info</h4>
+                <ul>
+                    <li>SELECT to list a student's information</li>
+                    <li>UPDATE the student's information (superpower, mentor NULLable)</li>
+                    <li>List missions of the student (M:M relationship)</li>
+                </ul>
+                <!-- Mission list page -->
+                <h4 class="display-5"><a href="/missions">Mission list</a></h4>
+                <ul>
+                    <li>SELECT to list missions</li>
+                    <li>INSERT a new mission </li>
+                    <li>Add a student to a mission (M:M relationship)</li>
+                    <li>Filter functionality: list the students on a particular mission</li>
+                    <li>DELETE a M:M relationship (mission-student)</li>
+                </ul>
+                <!-- Individual mission page -->
+                <h4 class="display-5">Individual mission page</h4>
+                <ul>
+                    <li>SELECT to list a mission's information</li>
+                    <li>List of students in the mission (M:M relationship)</li>
+                    <li>DELETE a M:M relationship (mission-student)</li>
+                </ul>
+                <!-- employees list Page-->
+                <h4 class="display-5"><a href="/employees">Employee List</a></h4>
+                <ul>
+                    <li>SELECT to list employees</li>
+                    <li>DELETE each employee</li>
+                    <li>INSERT a new employee</li>
+                </ul>
+                <!-- employee personal info page -->
+                <h4 class="display-5">Employee personal info</h4>
+                <ul>
+                    <li>SELECT to list an employee's information</li>
+                    <li>UPDATE the employee's information</li>
+                    <li>List of Team Affiliations</li>
+                </ul>
+                <!-- teams List Page-->
+                <h4 class="display-5"><a href="/teams">Teams List</a></h4>
+                <ul>
+                    <li>SELECT to list teams</li>
+                    <li>INSERT a new team</li>
+                    <li>Add an employee to a team (M:M relationship)</li>
+                    <li>Filter functionality: list the employees on a particular team.</li>
+                    <li>DELETE a M:M relationship (team-employee)</li>
+                </ul>
+                <!-- team personal info page -->
+                <h4 class="display-5">Individual Team page</h4>
+                <ul>
+                    <li>SELECT to list an teams's information</li>
+                    <li>List of Team members</li>
+                    <li>DELETE a M:M relationship (team-employee)</li>
+                </ul>
+                <!-- superpower list page -->
+                <h4 class="display-5"><a href="/superpowers">Superpower List</a></h4>
+                <ul>
+                    <li>SELECT to list superpowers</li>
+                    <li>INSERT a new superpower</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h5>Test Browser: Google Chrome</h5>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>

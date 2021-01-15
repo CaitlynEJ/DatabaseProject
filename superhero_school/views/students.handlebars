@@ -1,0 +1,89 @@
+<html>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Superhero School</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/index.html">Home</a>
+            <a class="nav-link" href="/employees">Employees</a>
+            <a class="nav-link active" href="#">Students <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/superpowers">Superpowers</a>
+            <a class="nav-link" href="/missions">Missions</a>
+            <a class="nav-link" href="/teams">Teams</a>
+          </div>
+        </div>
+    </nav>
+    <div class="container my-5 pt-4">
+        <div class="row justify-content-md-center">
+            <!-- List of Students w/ Delete Buttons -->
+            <div class="col-md-5 pr-5">
+                <h4 class="display-4">List of Students</h4>
+                <ul class="list-group list-group-flush">
+                    {{#each students}}
+                        <li class="list-group-item"><a href="/students/{{studentID}}">{{firstName}} {{lastName}}</a>
+                            <button class="delete-button btn btn-secondary btn-sm" onclick="deleteStudent({{studentID}})">&cross;</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!-- Add a new student -->
+            <div class="col-md-6 pl-5">
+                <h3>List a new student</h3>
+                <form action="/students" method="POST" class="border px-5 py-4" id="add-student">
+                    <h6>* indicates required field</h6>
+                    <!-- first & last name -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fname">First Name *</label>
+                            <input type="text" required="required" class="form-control" id="fname" name="fname">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname">
+                        </div>
+                    </div>
+                    <!-- alias -->
+                    <div class="form-group">
+                        <label for="alias">Alias</label>
+                        <input type="text" class="form-control" id="alias" name="alias">
+                    </div>
+                    <!-- email -->
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" required="required" class="form-control" id="email" name="email" placeholder="email@example.com">
+                    </div>
+                    <!-- GPA -->
+                    <div class="form-group">
+                        <label for="gpa">GPA *</label>
+                        <input type="number" required="required" step="0.01" max="4.00" min="0.00" class="form-control" id="gpa" name="gpa" placeholder="e.g. 4.00">
+                    </div>
+                    <!-- Superpower -->
+                    <div class="form-group">
+                        <label for="superpower">Superpower (optional)</label>
+                        <select id="superpower" name="superpower" class="form-control">
+                            <option value="">None</option>
+                            {{#each superpowers}}
+                                <option value="{{superpowerID}}">{{superpower}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <!-- mentor -->
+                    <div class="form-group">
+                        <label for="mentor">Mentor (optional)</label>
+                        <select id="mentor" name="mentor" class="form-control">
+                            <option value="">None</option>
+                            {{#each employees}}
+                                <option value="{{employeeID}}">{{firstName}} {{lastName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <!-- submit button -->
+                    <input type="submit" value="Create Student" class="btn btn-secondary btn-lg btn-block mt-5">
+                </form>
+            </div>
+        </div>
+    </div>
+</html>

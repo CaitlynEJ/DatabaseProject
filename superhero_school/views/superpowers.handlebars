@@ -1,0 +1,66 @@
+<html>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Superhero School</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/index.html">Home</a>
+            <a class="nav-link" href="/employees">Employees</a>
+            <a class="nav-link" href="/students">Students </span></a>
+            <a class="nav-link active" href="#">Superpowers <span class="sr-only">(current)</a>
+            <a class="nav-link" href="/missions">Missions</a>
+            <a class="nav-link" href="/teams">Teams</a>
+          </div>
+        </div>
+    </nav>
+    <div class="container my-5 pt-4">
+        <div class="row justify-content-md-center">
+            <!-- List of Superpowers w/ Delete Buttons -->
+            <div class="col-md-5 pr-5">
+                <h3 class="display-5">List of Superpowers</h3>
+                  <table class="table">
+                      <thead> 
+                          <tr>
+                              <th scope="col">Superpower</th>
+                              <th scope="col">Level</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {{#each superpowers}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{level}}</td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                  </table>
+            </div>
+            <!-- Add a new superpower -->
+            <div class="col-md-6 pl-5">
+                <h3>List a new superpower</h3>
+                <form action="/superpowers" method="POST" class="border px-5 py-4">
+                    <h6>* indicates required field</h6>
+                    <!-- alias -->
+                    <div class="form-group">
+                        <label for="powerName">Name *</label>
+                        <input type="text" class="form-control" id="powerName" name="name" required="required">
+                    </div>
+                    <!-- Superpower -->
+                    <div class="form-group">
+                        <label for="powerLevel">Superpower Level *</label>
+                        <select id="powerLevel" name="level" class="form-control" required="required">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <!-- submit button -->
+                    <input type="submit" value="Create Superpower" class="btn btn-secondary btn-lg btn-block mt-5">
+                </form>
+            </div>
+        </div>
+    </div>
+</html>

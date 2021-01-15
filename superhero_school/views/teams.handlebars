@@ -1,0 +1,116 @@
+<html>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Superhero School</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/index.html">Home</a>
+            <a class="nav-link" href="/employees">Employees</a>
+            <a class="nav-link" href="/students">Students</a>
+            <a class="nav-link" href="/superpowers">Superpowers</a>
+            <a class="nav-link" href="/missions">Missions </span></a>
+            <a class="nav-link active" href="/teams">Teams <span class="sr-only">(current)</a>
+          </div>
+        </div>
+    </nav>
+    <div class="container my-5 pt-4">
+        <div class="row justify-content-md-center">
+            <!-- List of teams w/ Delete Buttons -->
+            <div class="col-md-5 pr-5">
+                <h4 class="display-4">Teams</h4>
+                <ul class="list-group list-group-flush">
+                    {{#each teams}}
+                        <li class="list-group-item"><a href="/teams/{{teamID}}">{{name}}</a>
+                            <button class="delete-buttons btn btn-secondary btn-sm" onclick="deleteTeam({{teamID}})">&cross;</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!-- Add a new team -->
+            <div class="col-md-6 pl-5">
+                <h3>Add a new team</h3>
+                <form action="/teams" method="POST" class="border px-5 py-4">
+                    <h6>* indicates required field</h6>
+                    <!-- name -->
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" class="form-control" id="name" name="name" required="required">
+                    </div>
+                    <!-- headquarters -->
+                    <div class="form-group">
+                        <label for="name">Headquarters *</label>
+                        <input type="text" class="form-control" id="headquarter" name="headquartersLocation" required="required">
+                    </div>
+					<!-- group email -->
+                    <div class="form-group">
+                        <label for="name">Email *</label>
+                        <input type="email" class="form-control" id="email" name="groupEmail" required="required">
+                    </div>
+                    <!-- submit button -->
+                    <input type="submit" value="Create team" class="btn btn-secondary btn-lg btn-block mt-5">
+                </form>
+            </div>
+        </div>
+        <!-- Add an employee to a team -->
+        <div class="row mt-3">
+            <div class="col-md-8 pl-3 ml-5">
+                <h3>Add an employee to a team</h3>
+                <form action="/employees_teams" method="POST" class="border px-5 py-2">
+                    <div class="form-group mb-0">
+                        <!-- team dropdown select -->
+                        <label for="team-add">Team: </label>
+                        <select id="team-add" name="team" class="mr-4">
+                            {{#each teams}}
+                            <option value="{{teamID}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- employee dropdown select -->
+                        <label for="employee-add">Employee: </label>
+                        <select id="employee-add" name="employee" class="mr-4">
+                            {{#each employees}}
+                            <option value="{{employeeID}}">{{firstName}} {{lastName}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- submit button -->
+                        <input type="submit" value="Submit" class="btn btn-secondary btn-sm">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-5">
+            <!-- List the employees on a particular team -->
+            <div class="col-md-6 pr-5">
+                <h3>List the employees of a team</h3>
+                <form id="filter-employees" class="border px-5 py-2">
+                    <!-- Team dropdown select -->
+                    <div class="form-group mb-0">
+                        <label for="team-list">Team: </label>
+                        <select id="team-list" name="team" class="mr-4">
+                            {{#each teams}}
+                                <option value="{{teamID}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- submit button -->
+                        <input type="button" value="Submit" class="btn btn-secondary btn-sm" onclick="filterEmployeesByTeam()">
+                    </div>
+                </form>
+            </div>
+            <!-- employee list on a particular mission -->
+            <div class="col-md-5 pl-5">
+                <h4 class="display-5">{{teamName}}</h4>
+                <h5 class="display-5">Members:</h5>
+                <ul class="list-group list-group-flush">
+                    {{#each employees_filtered}}
+                        <li class="list-group-item">
+                            <a href="/employees/{{employeeID}}">{{firstName}} {{lastName}}</a>
+                            <button class="delete-buttons btn btn-secondary btn-sm" onclick="deleteTeamMember({{teamID}}, {{employeeID}})">&cross;</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</html>

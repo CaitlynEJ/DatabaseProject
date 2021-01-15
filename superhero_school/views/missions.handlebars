@@ -1,0 +1,115 @@
+<html>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Superhero School</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/index.html">Home</a>
+            <a class="nav-link" href="/employees">Employees</a>
+            <a class="nav-link" href="/students">Students</a>
+            <a class="nav-link" href="/superpowers">Superpowers</a>
+            <a class="nav-link active" href="/missions">Missions <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/teams">Teams</a>
+          </div>
+        </div>
+    </nav>
+    <div class="container my-5 pt-4">
+        <div class="row justify-content-md-center">
+            <!-- List of missions -->
+            <div class="col-md-5 pr-5">
+                <h4 class="display-4">Missions</h4>
+                <ul class="list-group list-group-flush">
+                    {{#each missions}}
+                        <li class="list-group-item"><a href="/missions/{{missionID}}">{{name}}</a>
+                            <button class="delete-button btn btn-secondary btn-sm" onclick="deleteMission({{missionID}})">&cross;</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!-- Add a new mission -->
+            <div class="col-md-6 pl-5">
+                <h3>Add a new mission</h3>
+                <form action="/missions" method="POST" class="border px-5 py-4" id="add-mission">
+                    <h6>* indicates required field</h6>
+                    <!-- name -->
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" required="required" class="form-control" id="name" name="name">
+                    </div>
+                    <!-- leader -->
+                    <div class="form-group">
+                        <label for="leader">Leader *</label>
+                        <select id="leader" required="required" name="leader" class="form-control">
+                            {{#each employees}}
+                                <option value="{{employeeID}}">{{firstName}} {{lastName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <!-- submit button -->
+                    <input type="submit" value="Create mission" class="btn btn-secondary btn-lg btn-block mt-5">
+                </form>
+            </div>
+        </div>
+        <!-- Add a student to a mission (M:M relationshp) -->
+        <div class="row mt-3">
+            <div class="col-md-7 pl-3 ml-5">
+                <h3>Add a student to a mission</h3>
+                <form action="/students_missions" method="POST" class="border px-5 py-2" id="add-students-missions">
+                    <div class="form-group mb-0">
+                        <!-- mission dropdown select -->
+                        <label for="mission-add">Mission: </label>
+                        <select id="mission-add" name="mission" class="mr-4">
+                            {{#each missions}}
+                                <option value="{{missionID}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- student dropdown select -->
+                        <label for="student-add">Student: </label>
+                        <select id="student-add" name="student" class="mr-4">
+                            {{#each students}}
+                                <option value="{{studentID}}">{{firstName}} {{lastName}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- submit button -->
+                        <input type="submit" value="Submit" class="btn btn-secondary btn-sm">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-5">
+            <!-- List the students on a particular mission -->
+            <div class="col-md-5 pr-5">
+                <h3>List the students on a mission</h3>
+                <form id="filter-students" class="border px-5 py-2">
+                    <!-- mission dropdown select -->
+                    <div class="form-group mb-0">
+                        <label for="mission-list">Mission: </label>
+                        <select id="mission-list" name="mission" class="mr-4">
+                            {{#each missions}}
+                                <option value="{{missionID}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- submit button -->
+                        <input type="button" value="Submit" class="btn btn-secondary btn-sm" onclick="filterStudentsByMission()">
+                    </div>
+                </form>               
+            </div>
+            <!-- Student list on a particular mission -->
+            <div class="col-md-6 pl-5">
+                <h4 class="display-5">{{missionName}}</h4>
+                <h5 class="display-5">Student list:</h5>
+                <ul class="list-group list-group-flush">
+                    {{#each students_filtered}}
+                        <li class="list-group-item">
+                            <a href="/students/{{studentID}}">{{firstName}} {{lastName}}</a>
+                            <button class="delete-buttons btn btn-secondary btn-sm" onclick="deleteMissionStudent({{missionID}}, {{studentID}})">&cross;</button>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</html>
